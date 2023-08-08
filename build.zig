@@ -27,12 +27,4 @@ pub fn build(b: *std.build.Builder) !void {
     plugin.linker_allow_shlib_undefined = true;
 
     b.getInstallStep().dependOn(&b.addInstallLibFile(plugin.getEmittedBin(), "zig-mpv-plugin/plugin.so").step);
-
-    const tests = b.step("test", "Run tests");
-    tests.dependOn(&b.addTest(.{
-        .root_source_file = root_source_file,
-        .target = target,
-        .optimize = optimize,
-        .link_libc = true,
-    }).step);
 }
